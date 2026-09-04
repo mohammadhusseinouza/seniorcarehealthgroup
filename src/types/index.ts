@@ -25,4 +25,5 @@ export interface Service {
 export interface PartnerBenefit {
   id: string
   title: string
+  icon: ReactNode
 }

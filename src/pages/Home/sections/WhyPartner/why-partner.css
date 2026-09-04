@@ -1,0 +1,245 @@
+/*
+ * Why Partner with Us — scroll reveal + hover choreography.
+ *
+ * Unlike Core Services (one observer per ROW), the handoff observes the
+ * header AND each of the 9 mosaic tiles independently (README 5.3), so each
+ * tile reveals only when it individually enters the later viewport zone —
+ * this reuses the shared useReveal() hook once per component instance, no
+ * new observer. The same dual self/descendant selector the prototype uses
+ * (".om-anim .om-in .om-rv, .om-anim .om-in.om-rv") lets one element be both
+ * a reveal target (its own translate/scale) and the flag-holder for nested
+ * internals (metrics label/rows/divider).
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .wp-reveal {
+    opacity: 0;
+    translate: var(--wp-x, 0px) var(--wp-y, 0px);
+    scale: var(--wp-scale, 1);
+    transition:
+      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+      scale 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .wp-in .wp-reveal,
+  .wp-in.wp-reveal {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  /* Header pieces. */
+  .wp-reveal[data-pos='header'] {
+    --wp-y: 20px;
+  }
+  .wp-reveal[data-pos='header-cta'] {
+    --wp-x: 26px;
+  }
+  .wp-h1 {
+    transition-delay: 0.12s;
+  }
+  .wp-h2 {
+    transition-delay: 0.25s;
+  }
+
+  /* Tile positions. */
+  .wp-reveal[data-pos='left'] {
+    --wp-x: -26px;
+  }
+  .wp-reveal[data-pos='right'] {
+    --wp-x: 26px;
+  }
+  .wp-reveal[data-pos='center'] {
+    --wp-y: 24px;
+    --wp-scale: 0.985;
+  }
+  .wp-reveal[data-pos='image-left'] {
+    --wp-x: -26px;
+    --wp-scale: 0.99;
+  }
+  .wp-reveal[data-pos='image-right'] {
+    --wp-x: 26px;
+    --wp-scale: 0.99;
+  }
+
+  /* Column stagger: left tiles = immediate, center = +100ms, right = +200ms. */
+  .wp-col-1 {
+    transition-delay: 0.1s;
+  }
+  .wp-col-2 {
+    transition-delay: 0.2s;
+  }
+
+  /* Metrics internal reveal. */
+  .wp-reveal[data-pos='internal'] {
+    --wp-y: 10px;
+  }
+  .wp-reveal[data-pos='icon'] {
+    --wp-scale: 0.9;
+  }
+  .wp-m1 {
+    transition-delay: 0.26s;
+  }
+  .wp-m2 {
+    transition-delay: 0.38s;
+  }
+  .wp-m3 {
+    transition-delay: 0.5s;
+  }
+  .wp-m4 {
+    transition-delay: 0.6s;
+  }
+
+  .wp-divider {
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0.5s;
+  }
+  .wp-in .wp-divider {
+    scale: 1 1;
+  }
+
+  /* Below 900px every entrance becomes vertical-only (README 5.2). */
+  @media (max-width: 899px) {
+    .wp-reveal[data-pos] {
+      --wp-x: 0px;
+      --wp-y: 20px;
+      --wp-scale: 0.99;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wp-reveal {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    transition: none;
+  }
+  .wp-divider {
+    scale: 1 1;
+    transition: none;
+  }
+}
+
+/* Hover choreography — pointer devices only; touch gets none of it. */
+@media (hover: hover) and (pointer: fine) {
+  .wp-tile {
+    transition:
+      transform 0.45s ease-out,
+      box-shadow 0.45s ease-out,
+      border-color 0.45s ease-out,
+      filter 0.35s ease;
+  }
+  .wp-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(39, 58, 41, 0.1);
+    border-color: rgba(210, 231, 97, 0.85);
+  }
+
+  /* Neighbor softening: hovered tile stays full strength, others soften slightly. */
+  .wp-mosaic:hover .wp-tile {
+    filter: opacity(0.945);
+  }
+  .wp-mosaic .wp-tile:hover {
+    filter: none;
+  }
+
+  .wp-icon,
+  .wp-corner,
+  .wp-deco,
+  .wp-metric-title,
+  .wp-metric-icon svg {
+    transition:
+      transform 0.38s ease-out,
+      opacity 0.45s ease-out;
+  }
+  .wp-corner,
+  .wp-deco {
+    transform-origin: center;
+  }
+
+  .wp-tile:hover .wp-icon {
+    transform: translateY(-2px) scale(1.08);
+  }
+  .wp-tile:hover .wp-icon svg {
+    transform: rotate(4deg);
+  }
+  .wp-tile:hover .wp-title {
+    transform: translateX(3px);
+  }
+  .wp-tile:hover .wp-corner {
+    transform: scale(1.18) translate(-2px, -2px);
+    opacity: 0.9;
+  }
+  .wp-tile:hover .wp-deco {
+    opacity: 0.4;
+  }
+
+  .wp-image-inner {
+    transition:
+      transform 0.68s ease-out,
+      filter 0.68s ease-out;
+  }
+  .wp-tile:hover .wp-image-inner {
+    transform: scale(1.035);
+    filter: brightness(1.02) saturate(1.02);
+  }
+  .wp-tint {
+    transition: opacity 0.55s ease-out;
+  }
+  .wp-tile:hover .wp-tint {
+    opacity: 0.04;
+  }
+
+  .wp-metric-icon {
+    transition: transform 0.35s ease-out;
+  }
+  .wp-tile:hover .wp-metric-icon {
+    transform: scale(1.07);
+  }
+  .wp-tile:hover .wp-metric-title {
+    transform: translateX(3px);
+  }
+  .wp-tile:hover .wp-divider {
+    opacity: 0.75;
+  }
+  .wp-tile:hover .wp-metric-icon-down svg {
+    transform: translateY(2px);
+  }
+  .wp-tile:hover .wp-metric-icon-clock svg {
+    transform: rotate(6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wp-tile,
+  .wp-tile:hover,
+  .wp-mosaic:hover .wp-tile,
+  .wp-mosaic .wp-tile:hover,
+  .wp-icon,
+  .wp-tile:hover .wp-icon,
+  .wp-tile:hover .wp-icon svg,
+  .wp-title,
+  .wp-tile:hover .wp-title,
+  .wp-corner,
+  .wp-tile:hover .wp-corner,
+  .wp-deco,
+  .wp-tile:hover .wp-deco,
+  .wp-image-inner,
+  .wp-tile:hover .wp-image-inner,
+  .wp-tint,
+  .wp-tile:hover .wp-tint,
+  .wp-metric-icon,
+  .wp-tile:hover .wp-metric-icon,
+  .wp-metric-title,
+  .wp-tile:hover .wp-metric-title,
+  .wp-tile:hover .wp-metric-icon-down svg,
+  .wp-tile:hover .wp-metric-icon-clock svg {
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
