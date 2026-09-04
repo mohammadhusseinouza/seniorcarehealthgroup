@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: 'Lora', ui-serif, Georgia, serif;
+
+  --color-carely-deep: #273a29;
+  --color-carely-apricot: #e2a76f;
+  --color-carely-ivory: #f8fbef;
+  --color-carely-ivory-alt: #f3f6e9;
+  --color-carely-lime: #d2e761;
+  --color-carely-white: #ffffff;
+  --color-carely-black: #0a0a0a;
+
+  --color-carely-card: #fcfdf7;
+  --color-carely-icon-soft: #eaf3be;
+  --color-carely-apricot-soft: #fbeee0;
+  --color-carely-form: #fcfbf3;
+  --color-carely-marquee: #eff2e6;
+  --color-carely-input-border: #dce8b4;
+  --color-carely-dark-hover: #1d2c1f;
+  --color-carely-body: #333a34;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-carely-ivory);
+    color: var(--color-carely-body);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-carely-apricot);
+    outline-offset: 2px;
+  }
+}
