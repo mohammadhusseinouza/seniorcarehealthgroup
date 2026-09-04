@@ -19,6 +19,7 @@ export interface Service {
   title: string
   description: string
   icon: ReactNode
+  image: string
   imageSlot: string
   imageAlt: string
   imageSide: 'left' | 'right'

@@ -1,3 +1,5 @@
+import heroMain from '@/assets/images/hero/hero big.webp'
+import heroSecondary from '@/assets/images/hero/hero small.webp'
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { HeroEditorialCard } from './HeroEditorialCard'
 import { HeroValueMarquee } from './HeroValueMarquee'
@@ -27,7 +29,7 @@ export function Hero() {
                 style={{ flexBasis: 260, minWidth: 240, minHeight: 300 }}
               >
                 <div className="hero-float">
-                  <ResponsiveImage alt="Caregiver with a seated elderly man, home setting" />
+                  <ResponsiveImage src={heroSecondary} alt="Caregiver with a seated elderly man, home setting" />
                 </div>
               </div>
 
@@ -40,7 +42,7 @@ export function Hero() {
             style={{ flexBasis: 440, minWidth: 300, minHeight: 'clamp(360px,60vw,720px)' }}
           >
             <div className="hero-ken">
-              <ResponsiveImage alt="Caregiver holding hands with a seated senior woman" />
+              <ResponsiveImage src={heroMain} alt="Caregiver holding hands with a seated senior woman" />
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import pilotTeam from '@/assets/images/pilot/cta.webp'
 import { DecorativeRing } from '@/components/ui/DecorativeRing'
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { PilotInfoBadge } from './PilotInfoBadge'
@@ -60,7 +61,7 @@ export function RiskFreePilot() {
 
         <div className="relative mt-[34px] w-full max-w-[1180px]">
           <div className="w-full bg-transparent" style={{ height: 'clamp(320px,44vw,560px)' }}>
-            <ResponsiveImage alt="Group of four clinicians" objectFit="contain" />
+            <ResponsiveImage src={pilotTeam} alt="Group of four clinicians" objectFit="contain" />
           </div>
 
           <PilotInfoBadge />

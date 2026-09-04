@@ -76,7 +76,7 @@ export function ServiceRow({ service, reversed = false, marginTopClassName }: Se
         style={{ height: 'clamp(300px,32vw,440px)' }}
       >
         <div className="svc-image-inner absolute inset-0">
-          <ResponsiveImage alt={service.imageAlt} />
+          <ResponsiveImage src={service.image} alt={service.imageAlt} />
         </div>
         <span aria-hidden="true" className="svc-tint absolute inset-0 bg-carely-deep opacity-0" />
       </div>

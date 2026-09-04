@@ -1,3 +1,4 @@
+import contactPortrait from '@/assets/images/contact/message us.webp'
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { ContactForm } from './ContactForm'
 
@@ -47,7 +48,7 @@ export function ContactSection() {
           </a>
 
           <div className="mt-9 aspect-square w-[min(390px,100%)] overflow-hidden rounded-full">
-            <ResponsiveImage alt="Senior couple and a care representative looking at a tablet" />
+            <ResponsiveImage src={contactPortrait} alt="Senior couple and a care representative looking at a tablet" />
           </div>
         </div>
 

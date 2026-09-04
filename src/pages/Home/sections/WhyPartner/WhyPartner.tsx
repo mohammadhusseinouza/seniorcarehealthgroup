@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom'
+import partnerClinician from '@/assets/images/partnership/parternship (1).webp'
+import partnerCaregiver from '@/assets/images/partnership/parternship  (2).webp'
+import partnerProvider from '@/assets/images/partnership/parternship  (3).webp'
 import { partnerBenefits } from '@/data/partnerBenefits'
 import { useReveal } from '@/hooks/useReveal'
 import { BenefitTile } from './BenefitTile'
@@ -59,12 +62,27 @@ export function WhyPartner() {
         {/* Exact tile order (README 3.4 / do-not-change constraint) — never reorder. */}
         <div className="wp-mosaic grid grid-cols-1 gap-4 min-[680px]:grid-cols-2 min-[1024px]:grid-cols-3">
           <BenefitTile benefit={partnerBenefits[0]} pos="left" col={0} />
-          <PartnerImageTile imageAlt="Clinician with a tablet, warm care setting" pos="center" col={1} />
+          <PartnerImageTile
+            image={partnerClinician}
+            imageAlt="Clinician with a tablet, warm care setting"
+            pos="center"
+            col={1}
+          />
           <BenefitTile benefit={partnerBenefits[1]} pos="right" col={2} />
 
-          <PartnerImageTile imageAlt="Caregiver in green scrubs with a senior woman" pos="image-left" col={0} />
+          <PartnerImageTile
+            image={partnerCaregiver}
+            imageAlt="Caregiver in green scrubs with a senior woman"
+            pos="image-left"
+            col={0}
+          />
           <MetricsTile variant="dark" />
-          <PartnerImageTile imageAlt="Provider in green scrubs talking with a senior man" pos="image-right" col={2} />
+          <PartnerImageTile
+            image={partnerProvider}
+            imageAlt="Provider in green scrubs talking with a senior man"
+            pos="image-right"
+            col={2}
+          />
 
           <BenefitTile benefit={partnerBenefits[2]} pos="left" col={0} />
           <MetricsTile variant="light" />

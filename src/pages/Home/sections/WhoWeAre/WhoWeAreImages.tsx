@@ -1,3 +1,5 @@
+import whoBack from '@/assets/images/who-we-are/who we ar 1.webp'
+import whoFront from '@/assets/images/who-we-are/who we ar 2.webp'
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { useReveal } from '@/hooks/useReveal'
 
@@ -13,7 +15,7 @@ export function WhoWeAreImages() {
     >
       <div data-pos="back" className="who-reveal who-image absolute top-0 left-0 h-[80%] w-[62%] overflow-hidden rounded-[26px]">
         <div className="who-image-inner h-full w-full">
-          <ResponsiveImage alt="Caregiver standing beside a seated senior woman" />
+          <ResponsiveImage src={whoBack} alt="Caregiver standing beside a seated senior woman" />
         </div>
       </div>
 
@@ -22,7 +24,7 @@ export function WhoWeAreImages() {
         className="who-reveal who-image absolute top-[20%] left-[32%] z-[2] h-[80%] w-[68%] overflow-hidden rounded-[26px] shadow-[0_18px_44px_rgba(39,58,41,0.14)]"
       >
         <div className="who-image-inner h-full w-full">
-          <ResponsiveImage alt="Caregiver seated with a senior woman, warm interior" />
+          <ResponsiveImage src={whoFront} alt="Caregiver seated with a senior woman, warm interior" />
         </div>
       </div>
     </div>

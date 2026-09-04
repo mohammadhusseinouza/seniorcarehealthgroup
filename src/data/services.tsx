@@ -1,3 +1,6 @@
+import serviceTelemedicine from '@/assets/images/services/service 1.webp'
+import serviceOnSite from '@/assets/images/services/service 2.webp'
+import serviceSpecialist from '@/assets/images/services/service 3.webp'
 import type { Service } from '@/types'
 
 /** Exact icon geometry from the approved handoff (Navbar.dc.html). */
@@ -36,6 +39,7 @@ export const services: Service[] = [
     description:
       'Our telemedicine services further enhance the level of care we provide by allowing PCAs and NPs to triage cases via video with immediate physician backup.',
     icon: TelemedicineIcon,
+    image: serviceTelemedicine,
     imageSlot: 'svc-telemedicine',
     imageAlt: 'Senior on a video call with a doctor, laptop at home',
     imageSide: 'right',
@@ -46,6 +50,7 @@ export const services: Service[] = [
     description:
       'Daily rounding, early treatment, and on-site medication management ensure residents receive the right care, right away.',
     icon: OnSiteIcon,
+    image: serviceOnSite,
     imageSlot: 'svc-onsite',
     imageAlt: 'Caregiver and senior talking by a window',
     imageSide: 'left',
@@ -56,6 +61,7 @@ export const services: Service[] = [
     description:
       'We provide direct access to specialists including psychiatry, ID, cardiology, and more—at the right time for better outcomes.',
     icon: SpecialistIcon,
+    image: serviceSpecialist,
     imageSlot: 'svc-specialist',
     imageAlt: 'Senior woman with a specialist, warm daylight',
     imageSide: 'right',

@@ -2,12 +2,13 @@ import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { useReveal } from '@/hooks/useReveal'
 
 interface PartnerImageTileProps {
+  image: string
   imageAlt: string
   pos: 'center' | 'image-left' | 'image-right'
   col: 0 | 1 | 2
 }
 
-export function PartnerImageTile({ imageAlt, pos, col }: PartnerImageTileProps) {
+export function PartnerImageTile({ image, imageAlt, pos, col }: PartnerImageTileProps) {
   const { ref, isRevealed } = useReveal<HTMLDivElement>()
 
   const colClass = col === 1 ? 'wp-col-1' : col === 2 ? 'wp-col-2' : ''
@@ -21,7 +22,7 @@ export function PartnerImageTile({ imageAlt, pos, col }: PartnerImageTileProps) 
         .join(' ')}
     >
       <div className="wp-image-inner absolute inset-0">
-        <ResponsiveImage alt={imageAlt} />
+        <ResponsiveImage src={image} alt={imageAlt} />
       </div>
       <span aria-hidden="true" className="wp-tint absolute inset-0 bg-carely-deep opacity-0" />
     </div>
