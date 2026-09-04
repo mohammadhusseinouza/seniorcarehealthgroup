@@ -1,7 +1,7 @@
 export function BookAppointmentBadge() {
   return (
     <a
-      href="#contact"
+      href="#contact-form"
       aria-label="Book Appointment"
       className="hero-badge relative flex h-[132px] w-[132px] shrink-0 items-center justify-center rounded-full no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-carely-apricot"
     >
