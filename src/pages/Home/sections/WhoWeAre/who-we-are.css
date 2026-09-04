@@ -1,0 +1,238 @@
+/*
+ * Who We Are — scroll reveal + hover.
+ *
+ * Two independent observer targets, each reusing the shared useReveal()
+ * hook: the image composition (WhoWeAreImages.tsx) and the whole right
+ * column (WhoWeAre.tsx). Each toggles its own `.who-in` class, which cascades
+ * to every nested `.who-reveal` child via the same dual self/descendant
+ * selector the prototype uses, so CircularBadge/ExperienceStat need no
+ * useReveal() of their own — they just carry the right data-pos/delay.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .who-reveal {
+    opacity: 0;
+    translate: var(--who-x, 0px) var(--who-y, 0px);
+    scale: var(--who-scale, 1);
+    transition:
+      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+      scale 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .who-in .who-reveal,
+  .who-in.who-reveal {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  /* Images. */
+  .who-reveal[data-pos='back'] {
+    --who-x: -28px;
+    --who-y: 16px;
+    --who-scale: 0.985;
+  }
+  .who-reveal[data-pos='front'] {
+    --who-x: 26px;
+    --who-y: 24px;
+    --who-scale: 0.975;
+    transition-delay: 0.13s;
+  }
+
+  /* Right column pieces. */
+  .who-reveal[data-pos='up'] {
+    --who-y: 16px;
+  }
+  .who-reveal[data-pos='up22'] {
+    --who-y: 22px;
+  }
+  .who-reveal[data-pos='badge'] {
+    --who-scale: 0.92;
+  }
+  .who-reveal[data-pos='left'] {
+    --who-x: -15px;
+  }
+  .who-reveal[data-pos='right'] {
+    --who-x: 15px;
+  }
+  .who-reveal[data-pos='check'] {
+    --who-scale: 0.85;
+  }
+  .who-reveal[data-pos='num'] {
+    --who-scale: 0.94;
+  }
+
+  /* Exact stagger from the handoff's om-wd0..wd9. */
+  .who-d0 {
+    transition-delay: 0.06s;
+  }
+  .who-d1 {
+    transition-delay: 0.16s;
+  }
+  .who-d2 {
+    transition-delay: 0.28s;
+  }
+  .who-d3 {
+    transition-delay: 0.38s;
+  }
+  .who-d4 {
+    transition-delay: 0.5s;
+  }
+  .who-d5 {
+    transition-delay: 0.62s;
+  }
+  .who-d6 {
+    transition-delay: 0.72s;
+  }
+  .who-d7 {
+    transition-delay: 0.82s;
+  }
+  .who-d8 {
+    transition-delay: 0.92s;
+  }
+  .who-d9 {
+    transition-delay: 1.02s;
+  }
+
+  /* Divider draws left -> right; vertical rule draws upward from its base. */
+  .who-divider {
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .who-vline {
+    scale: 1 0;
+    transform-origin: bottom;
+    transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .who-in .who-divider,
+  .who-in .who-vline {
+    scale: 1 1;
+  }
+
+  /* One-time emphasis pulse on the 17+ numeral, fired a beat into its reveal. */
+  @keyframes who-num-pulse {
+    0% {
+      scale: 1;
+    }
+    45% {
+      scale: 1.025;
+    }
+    100% {
+      scale: 1;
+    }
+  }
+  .who-in .who-num-pulse {
+    animation: who-num-pulse 0.55s ease-out 1.6s 1 both;
+  }
+
+  /* Below 1100px, images and benefits drop their horizontal motion (README 5.2). */
+  @media (max-width: 1099px) {
+    .who-reveal[data-pos='back'],
+    .who-reveal[data-pos='front'] {
+      --who-x: 0px;
+      --who-y: 24px;
+    }
+    .who-reveal[data-pos='left'],
+    .who-reveal[data-pos='right'] {
+      --who-x: 0px;
+      --who-y: 18px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who-reveal {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    transition: none;
+  }
+  .who-divider,
+  .who-vline {
+    scale: 1 1;
+    transition: none;
+  }
+  .who-in .who-num-pulse {
+    animation: none;
+  }
+}
+
+/*
+ * Badge rotation starts only once the parent Who We Are reveal has actually
+ * fired (`.who-in`, from the same useReveal() flag as everything else in
+ * this section) — it must not spin while the section is still off-screen.
+ */
+.who-badge-ring {
+  animation: none;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+@keyframes who-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .who-in .who-badge-ring {
+    animation: who-spin 24s linear infinite;
+  }
+}
+
+/* Hover — pointer devices only; touch gets none of it. */
+@media (hover: hover) and (pointer: fine) {
+  .who-image-inner {
+    transition:
+      transform 0.65s ease-out,
+      filter 0.65s ease-out;
+  }
+  .who-image[data-pos='front']:hover .who-image-inner {
+    transform: scale(1.025);
+    filter: brightness(1.01) saturate(1.01);
+  }
+  .who-image[data-pos='back']:hover .who-image-inner {
+    transform: scale(1.015);
+    filter: brightness(1.01) saturate(1.01);
+  }
+
+  .who-in .who-badge:hover .who-badge-ring {
+    animation-duration: 12s;
+  }
+  .who-badge-arrow {
+    transition: transform 0.25s ease;
+  }
+  .who-badge:hover .who-badge-arrow {
+    transform: translate(3px, -3px);
+  }
+
+  .who-benefit-icon {
+    transition: transform 0.38s ease-out;
+  }
+  .who-benefit:hover .who-benefit-icon {
+    transform: translateY(-2px) scale(1.06);
+  }
+  .who-benefit-text {
+    transition: transform 0.38s ease-out;
+  }
+  .who-benefit:hover .who-benefit-text {
+    transform: translateX(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who-image-inner,
+  .who-image[data-pos='front']:hover .who-image-inner,
+  .who-image[data-pos='back']:hover .who-image-inner,
+  .who-badge:hover .who-badge-ring,
+  .who-badge-arrow,
+  .who-badge:hover .who-badge-arrow,
+  .who-benefit-icon,
+  .who-benefit:hover .who-benefit-icon,
+  .who-benefit-text,
+  .who-benefit:hover .who-benefit-text {
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
