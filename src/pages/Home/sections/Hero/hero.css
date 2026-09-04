@@ -1,0 +1,201 @@
+/*
+ * Hero load-time entrance + continuous motion.
+ * These are LOAD-TIME animations (plain CSS `animation`, plays once on mount),
+ * intentionally separate from the shared scroll-triggered Reveal system
+ * (components/motion/Reveal.tsx) — the Hero is above the fold and must not
+ * wait on IntersectionObserver.
+ */
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-in-left {
+  from {
+    opacity: 0;
+    transform: translate(-24px, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.75s cubic-bezier(0.22, 0.7, 0.3, 1) both;
+}
+
+.hero-left {
+  animation: hero-in-left 0.8s cubic-bezier(0.22, 0.7, 0.3, 1) both;
+}
+
+.hero-right {
+  animation: hero-in-right 0.8s cubic-bezier(0.22, 0.7, 0.3, 1) both;
+}
+
+.hero-d1 {
+  animation-delay: 0.12s;
+}
+
+.hero-d2 {
+  animation-delay: 0.26s;
+}
+
+.hero-d3 {
+  animation-delay: 0.4s;
+}
+
+/* Book Appointment badge: circular text spins, center arrow stays static. */
+@keyframes hero-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-badge {
+  transition: transform 0.3s ease;
+}
+
+.hero-badge:hover {
+  transform: scale(1.04);
+}
+
+.hero-badge-ring {
+  animation: hero-spin 21s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.hero-badge:hover .hero-badge-ring {
+  animation-duration: 9s;
+}
+
+.hero-badge-arrow {
+  transition: transform 0.25s ease;
+}
+
+.hero-badge:hover .hero-badge-arrow {
+  transform: translate(4px, -4px);
+}
+
+/* Secondary image: floats on an inner wrapper so the drift never exposes an edge. */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.hero-float {
+  position: relative;
+  top: -7px;
+  width: 100%;
+  height: calc(100% + 14px);
+  animation: hero-float 7s ease-in-out infinite;
+}
+
+/* Decorative apricot dot pulse. */
+@keyframes hero-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.hero-pulse {
+  animation: hero-pulse 3.8s ease-in-out infinite;
+}
+
+/* Main image Ken Burns. */
+@keyframes hero-ken {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.03);
+  }
+}
+
+.hero-ken {
+  width: 100%;
+  height: 100%;
+  animation: hero-ken 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Value marquee: outer panel is static, only the inner track moves, left -> right. */
+@keyframes hero-marquee {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.hero-marquee-track {
+  animation: hero-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.hero-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 760px) {
+  .hero-marquee-track {
+    animation-duration: 32s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-left,
+  .hero-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-badge-ring,
+  .hero-float,
+  .hero-pulse,
+  .hero-ken,
+  .hero-marquee-track {
+    animation: none;
+  }
+
+  .hero-badge:hover {
+    transform: none;
+  }
+
+  .hero-badge:hover .hero-badge-arrow {
+    transform: none;
+  }
+}
