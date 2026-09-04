@@ -7,9 +7,11 @@ export interface NavLink {
   href: string
 }
 
-export interface FooterLinkGroup {
-  heading: string
-  links: NavLink[]
+export interface FooterSocialLink {
+  id: string
+  label: string
+  /** Real, functional URL. Omitted when the platform profile hasn't been provided yet. */
+  href?: string
 }
 
 export interface Service {
