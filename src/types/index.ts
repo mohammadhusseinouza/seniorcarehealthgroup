@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export type SectionTone = 'primary' | 'alternate' | 'dark'
 
 export interface NavLink {
@@ -14,6 +16,7 @@ export interface Service {
   id: string
   title: string
   description: string
+  icon: ReactNode
   imageSlot: string
   imageAlt: string
   imageSide: 'left' | 'right'

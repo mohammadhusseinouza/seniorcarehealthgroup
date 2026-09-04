@@ -1,0 +1,191 @@
+/*
+ * Core Services scroll reveal + hover choreography.
+ *
+ * Reveal reuses the shared useReveal() IntersectionObserver hook unmodified
+ * — one call per row (the <article> itself is the observed target, matching
+ * README 5.3's "row-level, so rows fire independently"). Only these CSS
+ * transition/offset rules are new and scoped to this section: the row root
+ * gets `.svc-in` when its own useReveal() fires, and that single flag reveals
+ * every nested `.svc-reveal` element at once (text column + image column),
+ * each with its own directional offset and, for the text column's internal
+ * pieces, its own transition-delay — mirroring the handoff's
+ * ".om-anim .om-in .om-rv" pattern without a second observer.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .svc-reveal {
+    opacity: 0;
+    translate: var(--svc-x, 0px) var(--svc-y, 12px);
+    scale: var(--svc-scale, 1);
+    transition:
+      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+      scale 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .svc-in .svc-reveal {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  .svc-reveal[data-dir='text-left'] {
+    --svc-x: -24px;
+    --svc-y: 10px;
+  }
+
+  .svc-reveal[data-dir='text-right'] {
+    --svc-x: 24px;
+    --svc-y: 10px;
+  }
+
+  .svc-reveal[data-dir='image-left'] {
+    --svc-x: -28px;
+    --svc-y: 0px;
+    --svc-scale: 0.985;
+  }
+
+  .svc-reveal[data-dir='image-right'] {
+    --svc-x: 28px;
+    --svc-y: 0px;
+    --svc-scale: 0.985;
+  }
+
+  /* Internal text-column stagger: icon -> title -> description -> CTA. */
+  .svc-reveal[data-dir='icon'] {
+    --svc-y: 12px;
+    --svc-scale: 0.9;
+    transition-duration: 0.75s, 0.75s, 0.75s;
+  }
+
+  .svc-reveal[data-dir='title'] {
+    --svc-y: 14px;
+    transition-delay: 0.16s;
+  }
+
+  .svc-reveal[data-dir='desc'] {
+    --svc-y: 12px;
+    transition-delay: 0.32s;
+  }
+
+  .svc-reveal[data-dir='cta'] {
+    --svc-y: 10px;
+    transition-delay: 0.48s;
+  }
+
+  /* Below 900px all horizontal reveal motion becomes vertical (README 5.2). */
+  @media (max-width: 899px) {
+    .svc-reveal[data-dir='text-left'],
+    .svc-reveal[data-dir='text-right'] {
+      --svc-x: 0px;
+      --svc-y: 20px;
+    }
+
+    .svc-reveal[data-dir='image-left'],
+    .svc-reveal[data-dir='image-right'] {
+      --svc-x: 0px;
+      --svc-y: 24px;
+      --svc-scale: 0.99;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-reveal {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    transition: none;
+  }
+}
+
+/* Row hover choreography — pointer devices only; touch gets none of it. */
+@media (hover: hover) and (pointer: fine) {
+  .svc-row {
+    transition: transform 0.5s ease-out;
+  }
+
+  .svc-row:hover {
+    transform: translateY(-4px);
+  }
+
+  .svc-image-inner {
+    transition:
+      transform 0.65s ease-out,
+      filter 0.65s ease-out;
+  }
+
+  .svc-row:hover .svc-image-inner {
+    transform: scale(1.03);
+    filter: brightness(1.02) saturate(1.02);
+  }
+
+  .svc-tint {
+    transition: opacity 0.6s ease-out;
+  }
+
+  .svc-row:hover .svc-tint {
+    opacity: 0.05;
+  }
+
+  .svc-icon {
+    transition: transform 0.4s ease-out;
+  }
+
+  .svc-row:hover .svc-icon {
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  .svc-title {
+    transition: transform 0.35s ease-out;
+  }
+
+  .svc-row:hover .svc-title {
+    transform: translateX(4px);
+  }
+
+  .svc-cta {
+    transition:
+      transform 0.35s ease-out,
+      background-color 0.25s ease;
+  }
+
+  .svc-row:hover .svc-cta {
+    transform: translateY(-2px);
+  }
+
+  .svc-arrow {
+    transition: transform 0.35s ease-out;
+  }
+
+  .svc-row:hover .svc-arrow {
+    transform: translateX(4px) scale(1.08);
+  }
+
+  /* Hovering the pill itself nudges the arrow a little further. */
+  .svc-cta:hover .svc-arrow {
+    transform: translateX(6px) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-row,
+  .svc-row:hover,
+  .svc-image-inner,
+  .svc-row:hover .svc-image-inner,
+  .svc-tint,
+  .svc-row:hover .svc-tint,
+  .svc-icon,
+  .svc-row:hover .svc-icon,
+  .svc-title,
+  .svc-row:hover .svc-title,
+  .svc-cta,
+  .svc-row:hover .svc-cta,
+  .svc-arrow,
+  .svc-row:hover .svc-arrow,
+  .svc-cta:hover .svc-arrow {
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
