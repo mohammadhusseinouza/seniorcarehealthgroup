@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import logoSchg from '@/assets/brand/logo-schg.png'
 import { CloseIcon } from '@/components/icons/CloseIcon'
-import { LogoMark } from '@/components/icons/LogoMark'
 import { MenuIcon } from '@/components/icons/MenuIcon'
 import { DesktopNav } from './DesktopNav'
 import { MobileNav } from './MobileNav'
@@ -25,9 +25,14 @@ export function Navbar() {
         aria-label="Primary"
         className="sticky top-4 z-[60] mx-auto mt-[30px] mb-2 flex h-20 w-[calc(100%-64px)] max-w-[1080px] items-center justify-between rounded-[44px] bg-carely-deep py-2 pr-3.5 pl-8"
       >
-        <Link to="/" className="flex items-center gap-[9px] text-carely-white no-underline">
-          <LogoMark className="h-6 w-6" />
-          <span className="text-[25px] font-medium tracking-[-0.015em]">Carely</span>
+        <Link to="/" className="flex shrink-0 items-center no-underline">
+          {/* Official lockup, used unmodified. object-contain + w-auto preserves its 3:1 ratio;
+           * the 80px pill height and link layout are unchanged. */}
+          <img
+            src={logoSchg}
+            alt="Senior Care Health Group"
+            className="h-[38px] w-auto object-contain min-[860px]:h-11"
+          />
         </Link>
 
         <DesktopNav />

@@ -1,6 +1,6 @@
 import type { FormEvent, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { LogoMark } from '@/components/icons/LogoMark'
+import logoSchg from '@/assets/brand/logo-schg.png'
 import { DecorativeRing } from '@/components/ui/DecorativeRing'
 import { footerContact, footerQuickLinks, footerSocialLinks } from '@/data/footer'
 
@@ -82,9 +82,13 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-[clamp(40px,4.5vw,70px)] min-[680px]:grid-cols-2 min-[1000px]:grid-cols-[1.2fr_1fr_0.8fr_1.2fr]">
           {/* Brand */}
           <div className="min-w-0">
-            <Link to="/" className="flex items-center gap-[9px] text-carely-white no-underline">
-              <LogoMark className="h-[26px] w-[26px]" />
-              <span className="text-[26px] font-medium tracking-[-0.015em]">Carely</span>
+            <Link to="/" className="inline-flex no-underline">
+              {/* Official lockup, used unmodified — transparent PNG sits directly on the forest background. */}
+              <img
+                src={logoSchg}
+                alt="Senior Care Health Group"
+                className="h-auto w-[248px] max-w-full object-contain"
+              />
             </Link>
 
             <span aria-hidden="true" className="mt-6 mb-[22px] block h-[3px] w-11 rounded-full bg-carely-apricot" />
@@ -196,7 +200,7 @@ export function Footer() {
         <span aria-hidden="true" className="mb-7 block h-px bg-carely-lime/20" style={{ marginTop: 'clamp(48px,5vw,80px)' }} />
 
         <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-[14px]">
-          <p className="m-0 text-base text-carely-ivory/[0.82]">Copyright © 2026 Carely. All Rights Reserved.</p>
+          <p className="m-0 text-base text-carely-ivory/[0.82]">Copyright © 2026 Senior Care Health Group. All Rights Reserved.</p>
           <p className="m-0 flex items-center gap-4 text-base">
             <Link to="/privacy-policy" className="text-carely-ivory/[0.82] no-underline transition-colors duration-200 hover:text-carely-apricot">
               Privacy Policy
