@@ -12,11 +12,18 @@ export function Navbar() {
   const menuId = useId()
 
   return (
-    <div className="flex w-full justify-center bg-carely-ivory pt-[30px] pb-2">
-      {/* z-[60] keeps the pill (and its menu trigger) clickable above the mobile scrim (z-50). */}
+    <>
+      {/*
+       * Only the green pill is sticky — no full-width band. It flows 30px below the
+       * page top at rest (mt-[30px], over the ivory body background) and floats at
+       * top:16px while scrolling, with the homepage sections visible around it.
+       * Its containing block is #root (the whole document), so it stays stuck for the
+       * entire page scroll without any JS. mb-2 keeps the approved gap before the Hero.
+       * z-[60] keeps the pill (and its menu trigger) clickable above the mobile scrim (z-50).
+       */}
       <nav
         aria-label="Primary"
-        className="relative z-[60] flex h-20 w-[calc(100%-64px)] max-w-[1080px] items-center justify-between rounded-[44px] bg-carely-deep py-2 pr-3.5 pl-8"
+        className="sticky top-4 z-[60] mx-auto mt-[30px] mb-2 flex h-20 w-[calc(100%-64px)] max-w-[1080px] items-center justify-between rounded-[44px] bg-carely-deep py-2 pr-3.5 pl-8"
       >
         <Link to="/" className="flex items-center gap-[9px] text-carely-white no-underline">
           <LogoMark className="h-6 w-6" />
@@ -39,6 +46,6 @@ export function Navbar() {
       </nav>
 
       <MobileNav id={menuId} open={menuOpen} onClose={() => setMenuOpen(false)} triggerRef={triggerRef} />
-    </div>
+    </>
   )
 }

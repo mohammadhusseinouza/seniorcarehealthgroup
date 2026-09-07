@@ -64,7 +64,7 @@ const SendIcon = (
 )
 
 const socialLinkClasses =
-  'flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-carely-ivory transition-colors duration-200 hover:bg-carely-apricot hover:text-carely-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-carely-lime'
+  'flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-carely-ivory transition-colors duration-200 hover:bg-carely-apricot hover:text-carely-deep focus-ring focus-visible:outline-offset-2 focus-visible:outline-carely-lime'
 
 /** No newsletter backend exists yet — this only prevents the page reload, no fake subscription claim. */
 function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
@@ -185,7 +185,7 @@ export function Footer() {
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[9px] bg-carely-apricot transition-colors duration-200 hover:bg-carely-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-carely-lime"
+                className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[9px] bg-carely-apricot transition-colors duration-200 hover:bg-carely-lime focus-ring focus-visible:outline-offset-2 focus-visible:outline-carely-lime"
               >
                 {SendIcon}
               </button>

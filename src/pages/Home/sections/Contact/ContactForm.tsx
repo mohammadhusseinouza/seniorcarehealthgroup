@@ -32,12 +32,14 @@ function handleSubmit(event: FormEvent<HTMLFormElement>) {
 }
 
 export function ContactForm() {
+  // scroll-mt-[108px] clears the sticky floating pill: top offset 16px + navbar height 80px
+  // + ~12px breathing gap, so anchor jumps to #contact-form land just below the pill.
   return (
     <form
       id="contact-form"
       aria-label="Contact form"
       onSubmit={handleSubmit}
-      className="relative overflow-hidden rounded-[28px] border border-carely-lime/90 bg-carely-form p-[clamp(26px,3.4vw,50px)] shadow-[0_12px_34px_rgba(39,58,41,0.06)]"
+      className="relative scroll-mt-[108px] overflow-hidden rounded-[28px] border border-carely-lime/90 bg-carely-form p-[clamp(26px,3.4vw,50px)] shadow-[0_12px_34px_rgba(39,58,41,0.06)]"
     >
       <span
         aria-hidden="true"

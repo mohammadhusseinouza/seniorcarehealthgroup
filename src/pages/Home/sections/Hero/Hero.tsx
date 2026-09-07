@@ -25,7 +25,7 @@ export function Hero() {
 
             <div className="flex flex-wrap gap-6">
               <div
-                className="hero-rise hero-d2 relative flex-1 overflow-hidden rounded-[26px]"
+                className="hero-rise hero-d2 relative flex-1 overflow-hidden rounded-card"
                 style={{ flexBasis: 260, minWidth: 240, minHeight: 300 }}
               >
                 <div className="hero-float">

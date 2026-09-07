@@ -61,7 +61,7 @@ export function ServiceRow({ service, reversed = false, marginTopClassName }: Se
         <Link
           to="/services"
           data-dir="cta"
-          className="svc-reveal svc-cta mt-[30px] inline-flex h-[50px] items-center gap-[14px] rounded-full bg-carely-deep py-0 pr-2 pl-[26px] text-base font-semibold whitespace-nowrap text-carely-white no-underline transition-colors duration-200 hover:bg-carely-dark-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-carely-apricot"
+          className="svc-reveal svc-cta mt-[30px] inline-flex h-[50px] items-center gap-[14px] rounded-full bg-carely-deep py-0 pr-2 pl-[26px] text-base font-semibold whitespace-nowrap text-carely-white no-underline transition-colors duration-200 hover:bg-carely-dark-hover focus-ring focus-visible:outline-offset-[3px] focus-visible:outline-carely-apricot"
         >
           Learn more
           <span className="svc-arrow flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-carely-lime">

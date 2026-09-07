@@ -1,7 +1,7 @@
 export function WorkingHoursCard() {
   return (
     <div
-      className="hero-rise hero-d3 flex flex-1 flex-col rounded-[26px] bg-carely-apricot p-8"
+      className="hero-rise hero-d3 flex flex-1 flex-col rounded-card bg-carely-apricot p-8"
       style={{ flexBasis: 320, minWidth: 260 }}
     >
       <h2 className="mb-3 text-[22px] font-semibold tracking-[-0.01em] text-carely-white">Working Hours</h2>

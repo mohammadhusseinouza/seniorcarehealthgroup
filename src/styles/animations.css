@@ -6,15 +6,28 @@
  * rules below (they only apply under `no-preference`), so reduced-motion
  * users always get opacity:1 / no transform, matching README 5.6.
  */
+
+/*
+ * Canonical reveal transition. Every section's `.*-reveal` base rule
+ * (.reveal here, plus .svc-reveal / .wp-reveal / .who-reveal) consumes this
+ * so the timing + easing live in exactly one place. Per-element overrides
+ * (transition-delay for stagger, transition-duration for the icon pieces)
+ * still apply on top, unchanged. Easing comes from the --ease-reveal @theme
+ * token in globals.css.
+ */
+:root {
+  --transition-reveal:
+    opacity 0.95s var(--ease-reveal),
+    translate 1.05s var(--ease-reveal),
+    scale 1.2s var(--ease-reveal);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html.js-anim .reveal {
     opacity: 0;
     translate: var(--reveal-x, 0) var(--reveal-y, 14px);
     scale: var(--reveal-scale, 1);
-    transition:
-      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-      translate 1.05s cubic-bezier(0.22, 1, 0.36, 1),
-      scale 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: var(--transition-reveal);
   }
 
   html.js-anim .reveal.is-revealed {

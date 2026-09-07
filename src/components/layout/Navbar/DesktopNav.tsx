@@ -19,7 +19,7 @@ export function DesktopNav() {
 
       <RouterNavLink
         to={contactNavLink.href}
-        className="flex h-[52px] items-center whitespace-nowrap rounded-full bg-carely-white px-[30px] text-[17px] font-semibold text-carely-deep no-underline transition-colors duration-200 hover:bg-carely-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-carely-apricot"
+        className="flex h-[52px] items-center whitespace-nowrap rounded-full bg-carely-white px-[30px] text-[17px] font-semibold text-carely-deep no-underline transition-colors duration-200 hover:bg-carely-lime focus-ring focus-visible:outline-offset-2 focus-visible:outline-carely-apricot"
       >
         {contactNavLink.label}
       </RouterNavLink>

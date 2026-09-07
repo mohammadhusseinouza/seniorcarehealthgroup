@@ -53,7 +53,7 @@ export function WhyPartner() {
           <Link
             to="/contact"
             data-pos="header-cta"
-            className="wp-reveal wp-h2 inline-flex h-[52px] shrink-0 items-center rounded-full bg-carely-deep px-[31px] text-base font-semibold whitespace-nowrap text-carely-white no-underline transition-colors duration-200 hover:bg-carely-lime hover:text-carely-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-carely-apricot"
+            className="wp-reveal wp-h2 inline-flex h-[52px] shrink-0 items-center rounded-full bg-carely-deep px-[31px] text-base font-semibold whitespace-nowrap text-carely-white no-underline transition-colors duration-200 hover:bg-carely-lime hover:text-carely-deep focus-ring focus-visible:outline-offset-[3px] focus-visible:outline-carely-apricot"
           >
             Book Consultation
           </Link>

@@ -41,7 +41,7 @@ export function ContactSection() {
 
           <a
             href="#contact-form"
-            className="mt-[30px] inline-flex h-[60px] items-center gap-[13px] rounded-full bg-carely-apricot px-8 text-[19px] font-semibold whitespace-nowrap text-carely-deep no-underline transition-colors duration-200 hover:bg-carely-deep hover:text-carely-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-carely-deep"
+            className="mt-[30px] inline-flex h-[60px] items-center gap-[13px] rounded-full bg-carely-apricot px-8 text-[19px] font-semibold whitespace-nowrap text-carely-deep no-underline transition-colors duration-200 hover:bg-carely-deep hover:text-carely-white focus-ring focus-visible:outline-offset-[3px] focus-visible:outline-carely-deep"
           >
             {PhoneIcon}
             Let&apos;s Talk

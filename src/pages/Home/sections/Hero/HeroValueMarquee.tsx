@@ -60,7 +60,7 @@ function MarqueeGroup({ hidden }: { hidden?: boolean }) {
 export function HeroValueMarquee() {
   return (
     <div
-      className="overflow-hidden rounded-[26px] bg-carely-marquee"
+      className="overflow-hidden rounded-card bg-carely-marquee"
       style={{ padding: '22px clamp(20px,2.4vw,36px)' }}
     >
       <div className="hero-marquee-track flex w-max items-center">

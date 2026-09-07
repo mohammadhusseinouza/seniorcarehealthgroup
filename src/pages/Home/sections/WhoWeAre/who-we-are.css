@@ -14,10 +14,7 @@
     opacity: 0;
     translate: var(--who-x, 0px) var(--who-y, 0px);
     scale: var(--who-scale, 1);
-    transition:
-      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-      translate 1.05s cubic-bezier(0.22, 1, 0.36, 1),
-      scale 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: var(--transition-reveal);
   }
 
   .who-in .who-reveal,
@@ -99,12 +96,12 @@
   .who-divider {
     scale: 0 1;
     transform-origin: left;
-    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: scale 0.5s var(--ease-reveal);
   }
   .who-vline {
     scale: 1 0;
     transform-origin: bottom;
-    transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: scale 0.6s var(--ease-reveal);
   }
   .who-in .who-divider,
   .who-in .who-vline {

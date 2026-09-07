@@ -53,7 +53,7 @@ export function RiskFreePilot() {
 
         <Link
           to="/contact"
-          className="mt-[34px] inline-flex h-[60px] items-center gap-[14px] rounded-[16px] bg-carely-apricot px-9 text-xl font-semibold whitespace-nowrap text-carely-white no-underline transition-colors duration-200 hover:bg-carely-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-carely-deep"
+          className="mt-[34px] inline-flex h-[60px] items-center gap-[14px] rounded-[16px] bg-carely-apricot px-9 text-xl font-semibold whitespace-nowrap text-carely-white no-underline transition-colors duration-200 hover:bg-carely-deep focus-ring focus-visible:outline-offset-[3px] focus-visible:outline-carely-deep"
         >
           Enroll Now
           {ArrowIcon}

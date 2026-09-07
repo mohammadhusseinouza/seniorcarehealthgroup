@@ -20,6 +20,14 @@
   --color-carely-input-border: #dce8b4;
   --color-carely-dark-hover: #1d2c1f;
   --color-carely-body: #333a34;
+
+  /* Shared easing for every scroll-reveal (was an inline cubic-bezier literal
+   * duplicated across animations.css and three section stylesheets). */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Medium corner radius shared by cards and image frames (WorkingHoursCard,
+   * Hero secondary image, HeroValueMarquee, Who We Are image pair). */
+  --radius-card: 26px;
 }
 
 @layer base {
@@ -48,5 +56,18 @@
   :focus-visible {
     outline: 2px solid var(--color-carely-apricot);
     outline-offset: 2px;
+  }
+}
+
+/*
+ * Shared focus-ring mechanics only: a 2px solid visible outline on
+ * :focus-visible. Colour (focus-visible:outline-carely-*) and offset
+ * (focus-visible:outline-offset-*) stay per-component — the approved designs
+ * intentionally differ on both.
+ */
+@utility focus-ring {
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: 2px;
   }
 }
