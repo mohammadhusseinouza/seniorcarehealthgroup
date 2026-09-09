@@ -30,3 +30,24 @@ export interface PartnerBenefit {
   title: string
   icon: ReactNode
 }
+
+export interface CareHomeResult {
+  id: string
+  title: string
+  body: string
+  icon: ReactNode
+  /** `row` = icon beside text (left column); `column` = icon stacked above text (right column). */
+  layout: 'row' | 'column'
+}
+
+export interface ServiceCardItem {
+  id: string
+  title: string
+  description: string
+  /** Destination for the whole-card link. */
+  href: string
+  /** Inner SVG elements only (24×24 grid); stroke props come from ServiceCard. */
+  icon: ReactNode
+  /** Decorative photo behind the forest wash on hover/focus. Per-card so distinct photos can drop in later. */
+  hoverImage: string
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+</helmet>
+<section aria-labelledby="location-title" style="width:100%; background:#F8FBEF; font-family:'DM Sans', sans-serif; box-sizing:border-box; padding:clamp(24px,2.4vw,36px) 0 clamp(70px,8vw,130px);">
+  <div style="width:calc(100% - 80px); max-width:1440px; margin:0 auto; display:grid; gap:clamp(44px,5vw,80px); align-items:center; grid-template-columns:{{ cols }};">
+
+    <div style="min-width:0; border-radius:24px; overflow:hidden; background:#E8ECE0; aspect-ratio:{{ mapRatio }};">
+      <iframe title="Map showing the Senior Care Health Group location at 123 Maplewood Drive, Pinehill, CA 90210" src="https://www.openstreetmap.org/export/embed.html?bbox=-118.4405%2C34.0605%2C-118.3705%2C34.1105&amp;layer=mapnik&amp;marker=34.0901%2C-118.4065" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%; height:100%; border:0; display:block; filter:grayscale(0.85) contrast(0.95);"></iframe>
+    </div>
+
+    <div style="min-width:0;">
+      <p style="margin:0; display:flex; align-items:center; gap:11px; font-family:'Lora', serif; font-style:italic; font-weight:400; font-size:clamp(18px,1.6vw,22px); color:#273A29;">
+        <span aria-hidden="true" style="width:9px; height:9px; border-radius:50%; background:#E2A76F; display:block; flex-shrink:0;"></span>
+        Contact us
+      </p>
+
+      <h2 id="location-title" style="margin:18px 0 0; font-weight:700; font-size:clamp(34px,3.4vw,56px); line-height:1.12; letter-spacing:-0.025em; color:#273A29; text-wrap:pretty;">We’re here to listen, <em style="font-family:'Lora', serif; font-style:italic; font-weight:400; letter-spacing:0;">help, and support</em></h2>
+
+      <div style="margin-top:clamp(40px,4.4vw,66px); display:grid; gap:clamp(28px,3vw,44px); grid-template-columns:{{ infoCols }};">
+
+        <div style="min-width:0;">
+          <span aria-hidden="true" style="width:60px; height:60px; border-radius:50%; background:#E2A76F; display:flex; align-items:center; justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s6-5.3 6-9.6A6 6 0 0 0 6 11.4C6 15.7 12 21 12 21Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"></path>
+              <circle cx="12" cy="11" r="2.3" stroke="#FFFFFF" stroke-width="1.7"></circle>
+            </svg>
+          </span>
+          <h3 style="margin:22px 0 0; font-weight:700; font-size:clamp(20px,1.7vw,25px); color:#273A29;">Address</h3>
+          <p style="margin:10px 0 0; font-size:17px; line-height:1.6; color:#6E756E;">123 Maplewood Drive,<br>Pinehill, CA 90210</p>
+        </div>
+
+        <div style="min-width:0;">
+          <span aria-hidden="true" style="width:60px; height:60px; border-radius:50%; background:#E2A76F; display:flex; align-items:center; justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <rect x="3.5" y="6" width="17" height="12" rx="2" stroke="#FFFFFF" stroke-width="1.7"></rect>
+              <path d="m4.5 7.5 7.5 5.5 7.5-5.5" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <h3 style="margin:22px 0 0; font-weight:700; font-size:clamp(20px,1.7vw,25px); color:#273A29;">Email</h3>
+          <p style="margin:10px 0 0; font-size:17px; line-height:1.6; color:#6E756E; overflow-wrap:anywhere;">
+            <a href="mailto:info@seniorcarehealthgroup.com" style="color:#6E756E; text-decoration:none; transition:color 0.25s ease;" style-hover="color:#273A29;" style-focus="outline:2px solid #E2A76F; outline-offset:2px;">info@seniorcarehealthgroup.com</a>
+          </p>
+        </div>
+
+        <div style="min-width:0;">
+          <span aria-hidden="true" style="width:60px; height:60px; border-radius:50%; background:#E2A76F; display:flex; align-items:center; justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M6.2 3.8h3l1.5 3.7-2 1.4a10.5 10.5 0 0 0 5.4 5.4l1.4-2 3.7 1.5v3a1.8 1.8 0 0 1-2 1.8C11.4 18.8 5.2 12.6 4.4 5.8a1.8 1.8 0 0 1 1.8-2Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <h3 style="margin:22px 0 0; font-weight:700; font-size:clamp(20px,1.7vw,25px); color:#273A29;">Phone</h3>
+          <p style="margin:10px 0 0; font-size:17px; line-height:1.6; color:#6E756E;">Available on request</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:720}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? window.innerWidth : 1200 };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ width: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+
+  renderVals() {
+    const w = this.state.width;
+    return {
+      cols: w >= 1040 ? 'minmax(0, 1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)',
+      infoCols: w >= 720 ? 'repeat(3, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      mapRatio: w >= 1040 ? '4 / 3' : '16 / 10',
+    };
+  }
+}
+</script>
+</body>
+</html>

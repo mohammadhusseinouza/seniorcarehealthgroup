@@ -16,6 +16,10 @@ const BENEFITS = [
 ]
 
 /**
+ * Shared section — identical design in the homepage flow and on the About Us
+ * page (both handoffs specify the same composition, copy and reveal chain), so
+ * it lives here rather than under one page's sections.
+ *
  * Bespoke wrapper (not SectionShell): the handoff sizes the inner wrapper as
  * `calc(100% - 80px)` with zero horizontal padding on the section itself —
  * the same gutter-via-inner-width model already used for Navbar and Why

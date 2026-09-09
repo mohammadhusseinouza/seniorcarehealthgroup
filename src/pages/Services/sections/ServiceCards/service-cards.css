@@ -1,0 +1,127 @@
+/*
+ * Service card hover / focus inversion — the Services page's one substantial
+ * interaction (Services README §9). One coordinated 320ms ease state change
+ * across nine properties, no stagger, no transform.
+ *
+ * Same contract the other sections' stylesheets follow:
+ *   - resting colours live here (they invert as one, so keeping them in the
+ *     JSX would just split the state across two files);
+ *   - pointer hover is gated behind `(hover: hover) and (pointer: fine)` so
+ *     touch devices keep the white card permanently — no sticky tap state;
+ *   - `:focus-visible` gets the identical inversion so keyboard users see the
+ *     same feedback (README §9 / §11), and is NOT gated;
+ *   - reduced motion keeps the end state, drops the timing.
+ */
+
+.svc-card {
+  background-color: var(--color-carely-white);
+  border: 1px solid var(--color-carely-card-border);
+}
+
+.svc-card-img {
+  opacity: 0;
+}
+
+.svc-card-title,
+.svc-card-learn {
+  color: var(--color-carely-deep);
+}
+
+.svc-card-desc {
+  color: var(--color-carely-muted);
+}
+
+.svc-card-divider {
+  background-color: var(--color-carely-divider);
+}
+
+/* IconCircle here is rendered without an inline background (bg={null}) so this
+ * rule — and its hover/focus override — can win. */
+.svc-card-icon {
+  background-color: var(--color-carely-apricot);
+}
+
+/* Explicit rest stroke so the hover/focus transition has a CSS endpoint on
+ * both sides (the glyph's stroke="#FFFFFF" attribute alone can leave the
+ * transition inconsistent across browsers). */
+.svc-card-icon svg {
+  stroke: var(--color-carely-white);
+}
+
+/* Transitions apply regardless of input type so the focus-visible path animates
+ * too; reduced motion below removes them. */
+.svc-card,
+.svc-card-img,
+.svc-card-title,
+.svc-card-desc,
+.svc-card-learn,
+.svc-card-divider,
+.svc-card-icon,
+.svc-card-icon svg {
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    color 320ms ease,
+    stroke 320ms ease,
+    opacity 320ms ease;
+}
+
+.svc-card:focus-visible {
+  outline: 2px solid var(--color-carely-apricot);
+  outline-offset: 3px;
+}
+
+/* --- inverted state: keyboard (any device) --- */
+.svc-card:focus-visible {
+  background-color: var(--color-carely-deep);
+  border-color: var(--color-carely-deep);
+}
+.svc-card:focus-visible .svc-card-img {
+  opacity: 1;
+}
+.svc-card:focus-visible .svc-card-title,
+.svc-card:focus-visible .svc-card-desc,
+.svc-card:focus-visible .svc-card-learn {
+  color: var(--color-carely-white);
+}
+.svc-card:focus-visible .svc-card-divider {
+  background-color: rgba(248, 251, 239, 0.3);
+}
+.svc-card:focus-visible .svc-card-icon {
+  background-color: var(--color-carely-ivory);
+}
+.svc-card:focus-visible .svc-card-icon svg {
+  stroke: var(--color-carely-deep);
+}
+
+/* --- inverted state: pointer hover (fine pointer + real hover only) --- */
+@media (hover: hover) and (pointer: fine) {
+  .svc-card:hover {
+    background-color: var(--color-carely-deep);
+    border-color: var(--color-carely-deep);
+  }
+  .svc-card:hover .svc-card-img {
+    opacity: 1;
+  }
+  .svc-card:hover .svc-card-title,
+  .svc-card:hover .svc-card-desc,
+  .svc-card:hover .svc-card-learn {
+    color: var(--color-carely-white);
+  }
+  .svc-card:hover .svc-card-divider {
+    background-color: rgba(248, 251, 239, 0.3);
+  }
+  .svc-card:hover .svc-card-icon {
+    background-color: var(--color-carely-ivory);
+  }
+  .svc-card:hover .svc-card-icon svg {
+    stroke: var(--color-carely-deep);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-card,
+  .svc-card * {
+    transition: none;
+  }
+}

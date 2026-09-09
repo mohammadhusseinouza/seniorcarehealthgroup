@@ -16,10 +16,24 @@
   --color-carely-icon-soft: #eaf3be;
   --color-carely-apricot-soft: #fbeee0;
   --color-carely-form: #fcfbf3;
+  /* Contact Us: neutral-grey form panel (distinct from --color-carely-form,
+   * the homepage's cream panel), the map's pre-load fill, and placeholder text.
+   * All three are named in SHARED_COMPONENTS.md § Colors. */
+  --color-carely-form-grey: #f3f4f2;
+  --color-carely-map: #e8ece0;
+  --color-carely-placeholder: #8a918b;
+  /* Services cards: 1px resting border and the internal divider. Both invert
+   * to forest green on card hover/focus (see service-cards.css). */
+  --color-carely-card-border: #ecefe4;
+  --color-carely-divider: #e7eadf;
   --color-carely-marquee: #eff2e6;
   --color-carely-input-border: #dce8b4;
   --color-carely-dark-hover: #1d2c1f;
   --color-carely-body: #333a34;
+  /* Inner-page secondary body copy (Our Care Home result text, later Services /
+   * Contact). Distinct from --color-carely-body (#333a34, Who We Are copy) —
+   * both are AA-compliant at 17px on the ivory grounds and must not be lightened. */
+  --color-carely-muted: #6e756e;
 
   /* Shared easing for every scroll-reveal (was an inline cubic-bezier literal
    * duplicated across animations.css and three section stylesheets). */
