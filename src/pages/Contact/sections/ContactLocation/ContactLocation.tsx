@@ -3,22 +3,24 @@ import { IconCircle } from '@/components/ui/IconCircle'
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
 import { contactInfo } from '@/data/contactInfo'
 import { LocationMap } from './LocationMap'
+import { MobileContactLocation } from './MobileContactLocation'
 
-const MapPinIcon = (
+/** Exported for reuse by MobileContactLocation (same glyph, verbatim). */
+export const MapPinIcon = (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M12 21s6-5.3 6-9.6A6 6 0 0 0 6 11.4C6 15.7 12 21 12 21Z" stroke="#FFFFFF" strokeWidth={1.7} strokeLinejoin="round" />
     <circle cx="12" cy="11" r="2.3" stroke="#FFFFFF" strokeWidth={1.7} />
   </svg>
 )
 
-const MailIcon = (
+export const MailIcon = (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <rect x="3.5" y="6" width="17" height="12" rx="2" stroke="#FFFFFF" strokeWidth={1.7} />
     <path d="m4.5 7.5 7.5 5.5 7.5-5.5" stroke="#FFFFFF" strokeWidth={1.7} strokeLinejoin="round" />
   </svg>
 )
 
-const PhoneIcon = (
+export const PhoneIcon = (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path
       d="M6.2 3.8h3l1.5 3.7-2 1.4a10.5 10.5 0 0 0 5.4 5.4l1.4-2 3.7 1.5v3a1.8 1.8 0 0 1-2 1.8C11.4 18.8 5.2 12.6 4.4 5.8a1.8 1.8 0 0 1 1.8-2Z"
@@ -86,10 +88,13 @@ const details: ContactDetailItem[] = [
  */
 export function ContactLocation() {
   return (
-    <section
-      aria-labelledby="location-title"
-      className="box-border w-full bg-carely-ivory pt-[clamp(24px,2.4vw,36px)] pb-[clamp(70px,8vw,130px)]"
-    >
+    <>
+      <MobileContactLocation />
+
+      <section
+        aria-labelledby="location-title"
+        className="hidden box-border w-full bg-carely-ivory pt-[clamp(24px,2.4vw,36px)] pb-[clamp(70px,8vw,130px)] min-[640px]:block"
+      >
       <div className="mx-auto grid w-[calc(100%-80px)] max-w-[1440px] grid-cols-1 items-center gap-[clamp(44px,5vw,80px)] min-[1040px]:grid-cols-2">
         <LocationMap />
 
@@ -123,6 +128,7 @@ export function ContactLocation() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

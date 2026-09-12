@@ -17,10 +17,10 @@ export function AboutPage() {
     <>
       <Navbar />
       <main>
-        <PageHero titleMain="About" titleAccent="us" breadcrumbCurrent="About Us" image={aboutHeroBg} />
+        <PageHero titleMain="About" titleAccent="us" breadcrumbCurrent="About Us" image={aboutHeroBg} mobileVariant="about" />
         <WhoWeAre />
         <OurCareHome />
-        <CtaSection />
+        <CtaSection mobileVariant="about" />
       </main>
       <Footer />
     </>

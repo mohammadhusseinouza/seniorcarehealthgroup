@@ -15,9 +15,9 @@ export function ServicesPage() {
     <>
       <Navbar />
       <main>
-        <PageHero titleMain="Our" titleAccent="services" breadcrumbCurrent="Services" image={servicesHeroBg} />
+        <PageHero titleMain="Our" titleAccent="services" breadcrumbCurrent="Services" image={servicesHeroBg} mobileVariant="services" />
         <ServiceCardsSection />
-        <CtaSection />
+        <CtaSection mobileVariant="services" />
       </main>
       <Footer />
     </>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
+import { MobilePageHero } from './MobilePageHero'
 
 interface PageHeroProps {
   /** Plain first part of the heading. */
@@ -10,6 +11,16 @@ interface PageHeroProps {
   breadcrumbCurrent: string
   /** Blurred, apricot-washed background photo. Optional — a placeholder renders until supplied. */
   image?: string
+  /**
+   * Opt-in dedicated mobile composition (currently the About Us, Services and
+   * Contact Us mobile handoffs — all three use the exact same generic
+   * `MobilePageHero`, since it takes all its content from props already).
+   * Omitted (the default) renders exactly the pre-existing behavior — the
+   * desktop markup, unconditionally, at every width — so any future consumer
+   * is unaffected until it explicitly opts in with its own approved mobile
+   * design.
+   */
+  mobileVariant?: 'about' | 'services' | 'contact'
 }
 
 /**
@@ -18,12 +29,18 @@ interface PageHeroProps {
  * rounded, with a blurred + 72%-washed background photo and two decorative
  * botanical line drawings. The `h1` here is the page's only `h1`.
  */
-export function PageHero({ titleMain, titleAccent, breadcrumbCurrent, image }: PageHeroProps) {
+export function PageHero({ titleMain, titleAccent, breadcrumbCurrent, image, mobileVariant }: PageHeroProps) {
+  const sectionClassName = mobileVariant
+    ? 'relative mx-auto mt-[clamp(20px,2.4vw,34px)] hidden min-h-[clamp(250px,27vw,380px)] w-[calc(100%-32px)] max-w-[1480px] flex-col items-center justify-center overflow-hidden rounded-[clamp(20px,2.4vw,34px)] bg-carely-apricot px-[clamp(20px,4vw,60px)] py-[clamp(44px,5.5vw,72px)] min-[640px]:flex'
+    : 'relative mx-auto mt-[clamp(20px,2.4vw,34px)] flex min-h-[clamp(250px,27vw,380px)] w-[calc(100%-32px)] max-w-[1480px] flex-col items-center justify-center overflow-hidden rounded-[clamp(20px,2.4vw,34px)] bg-carely-apricot px-[clamp(20px,4vw,60px)] py-[clamp(44px,5.5vw,72px)]'
+
   return (
-    <section
-      aria-labelledby="page-hero-title"
-      className="relative mx-auto mt-[clamp(20px,2.4vw,34px)] flex min-h-[clamp(250px,27vw,380px)] w-[calc(100%-32px)] max-w-[1480px] flex-col items-center justify-center overflow-hidden rounded-[clamp(20px,2.4vw,34px)] bg-carely-apricot px-[clamp(20px,4vw,60px)] py-[clamp(44px,5.5vw,72px)]"
-    >
+    <>
+      {mobileVariant ? (
+        <MobilePageHero titleMain={titleMain} titleAccent={titleAccent} breadcrumbCurrent={breadcrumbCurrent} image={image} />
+      ) : null}
+
+      <section aria-labelledby="page-hero-title" className={sectionClassName}>
       <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
         <div className="absolute inset-[-6%] scale-[1.06] blur-[9px]">
           <ResponsiveImage src={image} alt="" loading="eager" />
@@ -79,6 +96,7 @@ export function PageHero({ titleMain, titleAccent, breadcrumbCurrent, image }: P
         </span>
         <span aria-current="page">{breadcrumbCurrent}</span>
       </p>
-    </section>
+      </section>
+    </>
   )
 }

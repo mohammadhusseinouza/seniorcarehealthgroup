@@ -177,6 +177,20 @@
   }
 }
 
+/*
+ * Mobile badge (MobileWhoWeAre): no reveal chain, so no `.who-in` ancestor
+ * ever appears — it must spin unconditionally instead, per the mobile
+ * handoff ("22s linear infinite"). Reduced motion still wins: this rule only
+ * applies under `no-preference`, same gate as the desktop rule above, and
+ * `.who-badge-ring`'s own base `animation: none` (further up this file)
+ * still applies whenever this media query doesn't match.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .who-badge-ring-always {
+    animation: who-spin 22s linear infinite;
+  }
+}
+
 /* Hover — pointer devices only; touch gets none of it. */
 @media (hover: hover) and (pointer: fine) {
   .who-image-inner {

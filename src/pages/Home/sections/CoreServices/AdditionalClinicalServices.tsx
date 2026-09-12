@@ -1,43 +1,45 @@
-const CheckIcon = (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="m6 12.6 4 4 8-9" stroke="#273A29" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />
+import { Link } from 'react-router-dom'
+
+const ArrowUpRightIcon = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
-interface ClinicalService {
-  id: string
-  title: string
-  description: string
+interface AdditionalClinicalServicesProps {
+  variant?: 'desktop' | 'mobile'
 }
 
-const CLINICAL_SERVICES: ClinicalService[] = [
-  { id: 'medication', title: 'Medication Management', description: 'Optimization, reconciliation, monitoring' },
-  { id: 'chf-copd', title: 'CHF/COPD', description: 'On-site treatment to prevent exacerbation' },
-  { id: 'sepsis', title: 'Sepsis', description: 'Early recognition and IV antibiotic protocols' },
-  { id: 'uti-pneumonia', title: 'UTI/Pneumonia', description: 'Culture-guided therapy, resistance prevention' },
-]
+/**
+ * Latest handoff replaces the former definition list of extra clinical
+ * programs with a single CTA to the Services page (the full catalogue now
+ * lives there). Mobile variant is a full-width, justify-between bar
+ * (README "Additional Clinical Services") reusing the same destination/copy.
+ */
+export function AdditionalClinicalServices({ variant = 'desktop' }: AdditionalClinicalServicesProps) {
+  if (variant === 'mobile') {
+    return (
+      <div className="mt-[30px] border-t border-carely-deep/[0.12] px-5 pt-[26px]">
+        <Link
+          to="/services"
+          className="flex min-h-[56px] w-full items-center justify-between gap-3 rounded-full bg-carely-apricot py-0 pr-5 pl-[26px] text-[17px] font-semibold whitespace-nowrap text-carely-deep no-underline transition-colors duration-200 active:bg-carely-lime focus-ring focus-visible:outline-offset-[3px] focus-visible:outline-carely-deep"
+        >
+          Additional Clinical Services
+          {ArrowUpRightIcon}
+        </Link>
+      </div>
+    )
+  }
 
-export function AdditionalClinicalServices() {
   return (
-    <div className="mt-[clamp(64px,8vw,110px)] border-t border-carely-deep/[0.12] pt-[clamp(36px,4vw,56px)]">
-      <h3 className="m-0 font-editorial text-[clamp(25px,2.3vw,32px)] text-carely-deep">Additional Clinical Services</h3>
-
-      <dl className="mt-9 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-x-[60px] gap-y-7">
-        {CLINICAL_SERVICES.map((item) => (
-          <div key={item.id} className="flex items-start gap-4">
-            <span
-              aria-hidden="true"
-              className="mt-0.5 flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full bg-carely-lime"
-            >
-              {CheckIcon}
-            </span>
-            <div>
-              <dt className="text-lg font-semibold text-carely-deep">{item.title}</dt>
-              <dd className="mt-1.5 text-base leading-[1.55] text-carely-body">{item.description}</dd>
-            </div>
-          </div>
-        ))}
-      </dl>
+    <div className="mt-[clamp(64px,8vw,110px)] flex border-t border-carely-deep/[0.12] pt-[clamp(36px,4vw,56px)]">
+      <Link
+        to="/services"
+        className="inline-flex min-h-[56px] items-center gap-[14px] rounded-full bg-carely-apricot px-8 text-[18px] font-semibold whitespace-nowrap text-carely-deep no-underline transition-colors duration-[250ms] hover:bg-carely-lime focus-ring focus-visible:outline-offset-[3px] focus-visible:outline-carely-deep"
+      >
+        Additional Clinical Services
+        {ArrowUpRightIcon}
+      </Link>
     </div>
   )
 }

@@ -2,9 +2,11 @@ import { Fragment } from 'react'
 import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { careHomeResults } from '@/data/careHomeResults'
 import type { CareHomeResult } from '@/types'
+import { MobileOurCareHome } from './MobileOurCareHome'
 import { ResultBlock } from './ResultBlock'
 
-const StatPeopleIcon = (
+/** Exported for reuse by MobileOurCareHome's stat panel (same glyph, verbatim). */
+export const StatPeopleIcon = (
   <svg width="38" height="38" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
     <circle cx="9.4" cy="8.4" r="3.1" stroke="#E2A76F" strokeWidth={1.7} />
     <path d="M3.6 18c0-3.2 2.6-5 5.8-5s5.8 1.8 5.8 5" stroke="#E2A76F" strokeWidth={1.7} strokeLinecap="round" />
@@ -45,7 +47,13 @@ function ResultColumn({ results, dividerClassName }: { results: CareHomeResult[]
  */
 export function OurCareHome() {
   return (
-    <section aria-labelledby="care-home-title" className="box-border w-full bg-carely-ivory py-[clamp(70px,8vw,130px)]">
+    <>
+      <MobileOurCareHome />
+
+      <section
+        aria-labelledby="care-home-title"
+        className="hidden box-border w-full bg-carely-ivory py-[clamp(70px,8vw,130px)] min-[640px]:block"
+      >
       <div className="mx-auto grid w-[calc(100%-80px)] max-w-[1440px] grid-cols-1 items-center gap-[clamp(40px,4vw,72px)] min-[760px]:grid-cols-2 min-[1180px]:grid-cols-[minmax(0,0.83fr)_minmax(0,1fr)_minmax(0,0.83fr)]">
         {/* Left column */}
         <div className="min-w-0">
@@ -96,6 +104,7 @@ export function OurCareHome() {
           />
         </div>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

@@ -15,7 +15,7 @@ export function ContactPage() {
     <>
       <Navbar />
       <main>
-        <PageHero titleMain="Contact" titleAccent="us" breadcrumbCurrent="Contact Us" image={contactHeroBg} />
+        <PageHero titleMain="Contact" titleAccent="us" breadcrumbCurrent="Contact Us" image={contactHeroBg} mobileVariant="contact" />
         <ReachOut />
         <ContactLocation />
       </main>

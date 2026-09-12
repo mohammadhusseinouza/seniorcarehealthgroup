@@ -7,6 +7,12 @@ interface TextFieldProps {
   required?: boolean
   /** Render a `<textarea>` (min-height 190px, vertical resize) instead of an `<input>`. */
   multiline?: boolean
+  /**
+   * Mobile Contact's paired First/Last fields use slightly tighter padding
+   * and type so their shorter placeholders don't crowd the narrower columns
+   * (README "Field styling"). Only affects the non-multiline input.
+   */
+  dense?: boolean
   /** Extra classes on the wrapping `<label>` — used for grid column spans. */
   className?: string
 }
@@ -17,8 +23,8 @@ interface TextFieldProps {
  * border is `transparent` (not absent) so the apricot focus border adds no
  * layout shift — ReachOut.dc.html § inputs.
  */
-const SHARED =
-  'w-full box-border rounded-[14px] border border-transparent bg-carely-white font-sans text-[17px] text-carely-deep outline-none focus:border-carely-apricot placeholder:text-carely-placeholder placeholder:opacity-100'
+const BASE =
+  'w-full box-border rounded-[14px] border border-transparent bg-carely-white font-sans text-carely-deep outline-none focus:border-carely-apricot placeholder:text-carely-placeholder placeholder:opacity-100'
 
 export function TextField({
   name,
@@ -27,6 +33,7 @@ export function TextField({
   autoComplete,
   required = false,
   multiline = false,
+  dense = false,
   className = '',
 }: TextFieldProps) {
   return (
@@ -38,7 +45,7 @@ export function TextField({
           rows={6}
           required={required}
           placeholder={placeholder}
-          className={`${SHARED} min-h-[190px] resize-y px-[22px] py-5 leading-[1.55]`}
+          className={`${BASE} text-[17px] min-h-[190px] resize-y px-[22px] py-5 leading-[1.55]`}
         />
       ) : (
         <input
@@ -47,7 +54,7 @@ export function TextField({
           required={required}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          className={`${SHARED} h-[66px] px-[22px]`}
+          className={`${BASE} h-[66px] ${dense ? 'px-[18px] text-[16.5px]' : 'px-[22px] text-[17px]'}`}
         />
       )}
     </label>

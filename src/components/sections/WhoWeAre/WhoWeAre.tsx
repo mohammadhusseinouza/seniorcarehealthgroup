@@ -1,16 +1,19 @@
 import { useReveal } from '@/hooks/useReveal'
 import { CircularBadge } from './CircularBadge'
 import { ExperienceStat } from './ExperienceStat'
+import { MobileWhoWeAre } from './MobileWhoWeAre'
 import './who-we-are.css'
 import { WhoWeAreImages } from './WhoWeAreImages'
 
-const CheckIcon = (
+/** Exported for reuse by MobileWhoWeAre's benefit list (same glyph, mobile sizing). */
+export const CheckIcon = (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="m6 12.6 4 4 8-9" stroke="#FFFFFF" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
-const BENEFITS = [
+/** Exported for reuse by MobileWhoWeAre — same two benefit rows, mobile drops the `pos`/`delay` reveal fields. */
+export const BENEFITS = [
   { id: 'telemedicine', label: '24/7 Telemedicine Access', pos: 'left' as const, delay: 'who-d6' },
   { id: 'onsite', label: 'Daily On-Site Provider Support', pos: 'right' as const, delay: 'who-d7' },
 ]
@@ -29,7 +32,13 @@ export function WhoWeAre() {
   const { ref, isRevealed } = useReveal<HTMLDivElement>()
 
   return (
-    <section aria-labelledby="who-title" className="w-full box-border bg-carely-ivory-alt py-[clamp(70px,8vw,130px)]">
+    <>
+      <MobileWhoWeAre />
+
+      <section
+        aria-labelledby="who-title"
+        className="hidden w-full box-border bg-carely-ivory-alt py-[clamp(70px,8vw,130px)] min-[640px]:block"
+      >
       <div className="mx-auto grid w-[calc(100%-80px)] max-w-[1440px] grid-cols-1 items-center gap-[clamp(48px,5vw,80px)] min-[1100px]:grid-cols-[0.9fr_1.1fr]">
         <WhoWeAreImages />
 
@@ -90,6 +99,7 @@ export function WhoWeAre() {
           <ExperienceStat />
         </div>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

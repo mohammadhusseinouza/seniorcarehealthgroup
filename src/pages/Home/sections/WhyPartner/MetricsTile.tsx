@@ -1,19 +1,20 @@
 import { useReveal } from '@/hooks/useReveal'
 
-const DownArrowIcon = (
+/** Exported for reuse by MobileWhyPartner's condensed metrics cards (same glyphs, mobile sizing). */
+export const DownArrowIcon = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M12 5v13m-5-5 5 5 5-5" stroke="#FFFFFF" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
-const ClockIcon = (
+export const ClockIcon = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <circle cx="12" cy="12" r="7.6" stroke="#FFFFFF" strokeWidth={1.6} />
     <path d="M12 8.4V12l2.6 2" stroke="#FFFFFF" strokeWidth={1.6} strokeLinecap="round" />
   </svg>
 )
 
-const DollarIcon = (
+export const DollarIcon = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path
       d="M12 4.5v15M15.2 8.2c0-1.5-1.4-2.4-3.2-2.4s-3.2.9-3.2 2.4 1.4 2.2 3.2 2.7 3.4 1.1 3.4 2.8-1.6 2.6-3.4 2.6-3.4-1-3.4-2.6"
@@ -24,7 +25,7 @@ const DollarIcon = (
   </svg>
 )
 
-const PeopleIcon = (
+export const PeopleIcon = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <circle cx="10" cy="9" r="3.1" stroke="#FFFFFF" strokeWidth={1.6} />
     <path d="M4.6 19c0-2.9 2.4-4.7 5.4-4.7s5.4 1.8 5.4 4.7" stroke="#FFFFFF" strokeWidth={1.6} strokeLinecap="round" />

@@ -1,22 +1,41 @@
 import { Link } from 'react-router-dom'
+import { MobileCtaSection } from './MobileCtaSection'
 
-const ArrowUpRightIcon = (
+/** Exported for reuse by MobileCtaSection (same glyph, mobile sizing). */
+export const ArrowUpRightIcon = (
   <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
+
+interface CtaSectionProps {
+  /**
+   * Opt-in dedicated mobile composition (currently the About Us and Services
+   * mobile handoffs). Omitted (the default) renders exactly the pre-existing
+   * behavior — the desktop markup, unconditionally, at every width — so
+   * Contact and any other consumer are unaffected until they explicitly opt
+   * in. The two variants differ only in ground color (About: `ivory-alt`,
+   * Services: `ivory` — see MobileCtaSection), so the variant is passed
+   * straight through rather than duplicating the component.
+   */
+  mobileVariant?: 'about' | 'services'
+}
 
 /**
  * Shared "Join Us Today" CTA band (used on About Us and Services —
  * SHARED_COMPONENTS.md § CtaSection). Flat apricot button links to the
  * production Contact route (the prototype's `#contact` anchor maps to it).
  */
-export function CtaSection() {
+export function CtaSection({ mobileVariant }: CtaSectionProps = {}) {
+  const sectionClassName = mobileVariant
+    ? 'relative hidden box-border w-full overflow-hidden bg-carely-ivory-alt px-[clamp(24px,5vw,72px)] py-[clamp(72px,8vw,130px)] min-[640px]:block'
+    : 'relative box-border w-full overflow-hidden bg-carely-ivory-alt px-[clamp(24px,5vw,72px)] py-[clamp(72px,8vw,130px)]'
+
   return (
-    <section
-      aria-labelledby="cta-title"
-      className="relative box-border w-full overflow-hidden bg-carely-ivory-alt px-[clamp(24px,5vw,72px)] py-[clamp(72px,8vw,130px)]"
-    >
+    <>
+      {mobileVariant ? <MobileCtaSection variant={mobileVariant} /> : null}
+
+      <section aria-labelledby="cta-title" className={sectionClassName}>
       {/* Botanical line drawing (custom mark — paths verbatim from CtaSection.dc.html). */}
       <svg
         aria-hidden="true"
@@ -72,6 +91,7 @@ export function CtaSection() {
           </Link>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

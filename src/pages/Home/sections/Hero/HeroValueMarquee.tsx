@@ -52,18 +52,25 @@ function MarqueeGroup({ hidden }: { hidden?: boolean }) {
   )
 }
 
+interface HeroValueMarqueeProps {
+  /** 'card' = desktop/tablet rounded panel (unchanged). 'bleed' = mobile full-bleed band, 34s loop. */
+  variant?: 'card' | 'bleed'
+}
+
 /**
  * Seamless loop: two identical groups back to back, track animates from
  * translateX(-50%) to translateX(0) — content moves left -> right with no
  * jump. Only the duplicate group is aria-hidden.
  */
-export function HeroValueMarquee() {
+export function HeroValueMarquee({ variant = 'card' }: HeroValueMarqueeProps) {
+  const isBleed = variant === 'bleed'
+
   return (
     <div
-      className="overflow-hidden rounded-card bg-carely-marquee"
-      style={{ padding: '22px clamp(20px,2.4vw,36px)' }}
+      className={isBleed ? 'overflow-hidden bg-carely-marquee py-[18px]' : 'overflow-hidden rounded-card bg-carely-marquee'}
+      style={isBleed ? undefined : { padding: '22px clamp(20px,2.4vw,36px)' }}
     >
-      <div className="hero-marquee-track flex w-max items-center">
+      <div className={['hero-marquee-track', isBleed && 'hero-marquee-track-bleed', 'flex w-max items-center'].filter(Boolean).join(' ')}>
         <MarqueeGroup />
         <MarqueeGroup hidden />
       </div>

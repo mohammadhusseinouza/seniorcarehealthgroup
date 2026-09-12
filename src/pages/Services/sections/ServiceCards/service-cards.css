@@ -125,3 +125,134 @@
     transition: none;
   }
 }
+
+/*
+ * Mobile primary carousel (MobileServiceCardsSection) — the same nine-property
+ * inversion contract as .svc-card above, but keyed off a React-driven
+ * `.msvc-active` class instead of :hover/:focus-visible: there is no hover on
+ * touch, so the card currently in view carries the inverted state instead
+ * (Services mobile README §9, "Critical Interaction"). :focus-visible still
+ * gets its own visible outline — keyboard behavior is not removed — but does
+ * not itself retrigger the inversion, which stays scroll-driven only.
+ */
+.msvc-card {
+  background-color: var(--color-carely-card);
+  border: 1px solid rgba(39, 58, 41, 0.09);
+}
+
+.msvc-card-img {
+  opacity: 0;
+}
+
+.msvc-card-title,
+.msvc-card-learn {
+  color: var(--color-carely-deep);
+}
+
+.msvc-card-desc {
+  color: var(--color-carely-muted);
+}
+
+.msvc-card-divider {
+  background-color: rgba(39, 58, 41, 0.12);
+}
+
+.msvc-card-icon {
+  background-color: var(--color-carely-apricot);
+}
+
+.msvc-card-icon svg {
+  stroke: var(--color-carely-white);
+}
+
+.msvc-card,
+.msvc-card-img,
+.msvc-card-title,
+.msvc-card-desc,
+.msvc-card-learn,
+.msvc-card-divider,
+.msvc-card-icon,
+.msvc-card-icon svg,
+.msvc-dot {
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    color 320ms ease,
+    stroke 320ms ease,
+    opacity 320ms ease,
+    width 260ms ease;
+}
+
+.msvc-card:focus-visible {
+  outline: 2px solid var(--color-carely-apricot);
+  outline-offset: 3px;
+}
+
+/*
+ * Inversion fires on scroll-driven `.msvc-active` OR native `:focus-visible`
+ * — keyboard users tabbing to a resting card must see the same desktop-style
+ * inversion the mouse/focus-visible path already gives them, without that
+ * ever touching React's `activeCard` state (which stays scroll-position-only,
+ * per the mobile Services correction). The two triggers are independent and
+ * can be true at once (focusing the already-active card changes nothing
+ * visually, only adds the outline above).
+ */
+.msvc-card.msvc-active,
+.msvc-card:focus-visible {
+  background-color: var(--color-carely-deep);
+  border-color: var(--color-carely-deep);
+}
+.msvc-card.msvc-active .msvc-card-img,
+.msvc-card:focus-visible .msvc-card-img {
+  opacity: 1;
+}
+.msvc-card.msvc-active .msvc-card-title,
+.msvc-card.msvc-active .msvc-card-desc,
+.msvc-card.msvc-active .msvc-card-learn,
+.msvc-card:focus-visible .msvc-card-title,
+.msvc-card:focus-visible .msvc-card-desc,
+.msvc-card:focus-visible .msvc-card-learn {
+  color: var(--color-carely-white);
+}
+.msvc-card.msvc-active .msvc-card-divider,
+.msvc-card:focus-visible .msvc-card-divider {
+  background-color: rgba(248, 251, 239, 0.3);
+}
+.msvc-card.msvc-active .msvc-card-icon,
+.msvc-card:focus-visible .msvc-card-icon {
+  background-color: var(--color-carely-ivory);
+}
+.msvc-card.msvc-active .msvc-card-icon svg,
+.msvc-card:focus-visible .msvc-card-icon svg {
+  stroke: var(--color-carely-deep);
+}
+
+/* Progress dots: decorative, width/color only. */
+.msvc-dot {
+  background-color: rgba(39, 58, 41, 0.22);
+}
+.msvc-dot.msvc-dot-active {
+  background-color: var(--color-carely-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msvc-card,
+  .msvc-card *,
+  .msvc-dot {
+    transition: none;
+  }
+}
+
+/*
+ * Secondary cards use Tailwind's `transition-colors` utility directly (their
+ * press/focus inversion is `group-active:`/`group-focus-visible:`, not a
+ * custom class) — this un-layered rule still wins over that utility's
+ * `@layer utilities` declaration, so reduced motion removes the fade there
+ * too without touching the active/focus end states themselves.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .msvc-secondary-grid,
+  .msvc-secondary-grid * {
+    transition: none;
+  }
+}

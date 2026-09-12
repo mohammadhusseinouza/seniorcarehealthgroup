@@ -149,6 +149,21 @@
   will-change: transform;
 }
 
+/* Mobile hero photo: slightly deeper zoom (1 -> 1.05) per the mobile handoff. */
+@keyframes hero-ken-mobile {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.hero-ken-mobile {
+  animation: hero-ken-mobile 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 /* Value marquee: outer panel is static, only the inner track moves, left -> right. */
 @keyframes hero-marquee {
   from {
@@ -174,6 +189,12 @@
   }
 }
 
+/* Higher specificity than the max-width:760px rule above, so the dedicated
+ * mobile (<640px) full-bleed marquee keeps its own 34s duration. */
+.hero-marquee-track.hero-marquee-track-bleed {
+  animation-duration: 34s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-rise,
   .hero-left,
@@ -187,6 +208,7 @@
   .hero-float,
   .hero-pulse,
   .hero-ken,
+  .hero-ken-mobile,
   .hero-marquee-track {
     animation: none;
   }

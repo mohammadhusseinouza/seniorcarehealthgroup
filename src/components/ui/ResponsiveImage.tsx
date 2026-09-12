@@ -23,10 +23,11 @@ export function ResponsiveImage({
   loading = 'lazy',
 }: ResponsiveImageProps) {
   if (!src) {
+    // Decorative, not `role="img"`/aria-labelled with the real photo's future alt text —
+    // that photo doesn't exist yet, so assistive tech must not announce it as present.
     return (
       <div
-        role="img"
-        aria-label={alt}
+        aria-hidden="true"
         className={[
           'flex h-full w-full items-center justify-center bg-carely-ivory-alt px-4 text-center text-sm text-carely-body/60',
           className,

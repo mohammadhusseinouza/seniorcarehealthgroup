@@ -1,6 +1,7 @@
-import { useEffect, useRef, type RefObject } from 'react'
+import { useRef, type RefObject } from 'react'
 import { NavLink as RouterNavLink } from 'react-router-dom'
 import { contactNavLink, primaryNavLinks } from '@/data/navigation'
+import { useDialogFocusTrap } from '@/hooks/useDialogFocusTrap'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 
 interface MobileNavProps {
@@ -25,39 +26,7 @@ const linkClasses = ({ isActive }: { isActive: boolean }) =>
 export function MobileNav({ id, open, onClose, triggerRef }: MobileNavProps) {
   const panelRef = useRef<HTMLDivElement>(null)
   useLockBodyScroll(open)
-
-  useEffect(() => {
-    if (!open) return
-
-    const panel = panelRef.current
-    const focusable = panel?.querySelectorAll<HTMLElement>('a[href]')
-    focusable?.[0]?.focus()
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        onClose()
-        triggerRef.current?.focus()
-        return
-      }
-
-      if (event.key !== 'Tab' || !focusable || focusable.length === 0) return
-
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-      if (!first || !last) return
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault()
-        first.focus()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [open, onClose, triggerRef])
+  useDialogFocusTrap(open, panelRef, onClose, triggerRef)
 
   if (!open) return null
 
