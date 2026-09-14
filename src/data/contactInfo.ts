@@ -1,16 +1,15 @@
 import { footerContact } from './footer'
 
 /**
- * Canonical contact data for the Contact Us page. Address and email come from
- * the same source the Footer uses (`footerContact`); `phone` has no approved
- * value yet — the handoff copy is the literal string "Available on request",
- * and a real number would drop in here as a `tel:` link.
+ * Canonical contact data for the Contact Us page. Address, email, phone, and
+ * fax all come from the same source the Footer uses (`footerContact`), so the
+ * business's official contact details are never duplicated across components.
  */
 export const contactInfo = {
   addressLines: footerContact.addressLines,
   email: footerContact.email,
-  /** `null` until a real number is supplied; renders as "Available on request". */
-  phone: null as string | null,
+  phone: footerContact.phone as string | null,
+  fax: footerContact.fax,
 } as const
 
 export interface OpeningHoursRow {

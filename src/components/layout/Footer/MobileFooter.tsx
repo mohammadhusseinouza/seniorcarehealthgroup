@@ -4,7 +4,7 @@ import logoSchg from '@/assets/brand/logo-schg.png'
 import { ChevronIcon } from '@/components/icons/ChevronIcon'
 import { DecorativeRing } from '@/components/ui/DecorativeRing'
 import { footerContact, footerQuickLinks, footerSocialLinks } from '@/data/footer'
-import { MapPinIcon, SendIcon, SOCIAL_ICONS } from './Footer'
+import { FooterPhoneIcon, MapPinIcon, SendIcon, SOCIAL_ICONS } from './Footer'
 
 /** Same envelope geometry as the desktop EnvelopeIcon, deep-stroke for the apricot circle. */
 const DeepEnvelopeIcon = (
@@ -129,7 +129,7 @@ export function MobileFooter() {
               </span>
             </button>
             {openGroup === 'contact' ? (
-              <div className="pt-0.5 pb-[22px]">
+              <div className="flex flex-col gap-4 pt-0.5 pb-[22px]">
                 <p className="m-0 flex gap-3 text-[16.5px] leading-[1.6] text-carely-ivory">
                   {MapPinIcon}
                   <span>
@@ -137,6 +137,15 @@ export function MobileFooter() {
                     <br />
                     {footerContact.addressLines[1]}
                   </span>
+                </p>
+                <p className="m-0 flex items-center gap-3 text-[16.5px] text-carely-ivory">
+                  {FooterPhoneIcon}
+                  <a
+                    href={`tel:${footerContact.phone.replace(/[^+\d]/g, '')}`}
+                    className="text-carely-ivory no-underline"
+                  >
+                    {footerContact.phone}
+                  </a>
                 </p>
               </div>
             ) : null}

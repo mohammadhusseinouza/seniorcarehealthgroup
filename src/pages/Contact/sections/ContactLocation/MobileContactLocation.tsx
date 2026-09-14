@@ -76,18 +76,22 @@ export function MobileContactLocation() {
         </a>
 
         {contactInfo.phone ? (
-          <a
-            href={`tel:${contactInfo.phone.replace(/[^+\d]/g, '')}`}
-            className={[rowClasses, rowPressClasses].join(' ')}
-          >
-            <IconCircle size={52} className="[&>svg]:h-[26px] [&>svg]:w-[26px]">
-              {PhoneIcon}
-            </IconCircle>
-            <span className="min-w-0">
-              <span className="block text-[19px] font-bold text-carely-deep">Phone</span>
-              <span className="mt-1 block text-[16.5px] leading-[1.5] text-carely-muted">{contactInfo.phone}</span>
-            </span>
-          </a>
+          <>
+            <a
+              href={`tel:${contactInfo.phone.replace(/[^+\d]/g, '')}`}
+              className={[rowClasses, rowPressClasses].join(' ')}
+            >
+              <IconCircle size={52} className="[&>svg]:h-[26px] [&>svg]:w-[26px]">
+                {PhoneIcon}
+              </IconCircle>
+              <span className="min-w-0">
+                <span className="block text-[19px] font-bold text-carely-deep">Phone</span>
+                <span className="mt-1 block text-[16.5px] leading-[1.5] text-carely-muted">{contactInfo.phone}</span>
+              </span>
+            </a>
+            {/* Plain caption, outside the tel: link — fax is information, not a call action. */}
+            <p className="m-0 pl-[68px] text-[14.5px] leading-[1.4] text-carely-muted/80">Fax: {contactInfo.fax}</p>
+          </>
         ) : (
           <div className={rowClasses}>
             <IconCircle size={52} className="[&>svg]:h-[26px] [&>svg]:w-[26px]">

@@ -58,6 +58,18 @@ const EnvelopeIcon = (
   </svg>
 )
 
+/** Exported for reuse by MobileFooter — same geometry as the other footer icons. */
+export const FooterPhoneIcon = (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
+    <path
+      d="M6.2 3.8h3l1.5 3.7-2 1.4a10.5 10.5 0 0 0 5.4 5.4l1.4-2 3.7 1.5v3a1.8 1.8 0 0 1-2 1.8C11.4 18.8 5.2 12.6 4.4 5.8a1.8 1.8 0 0 1 1.8-2Z"
+      stroke="#E2A76F"
+      strokeWidth={1.6}
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
 export const SendIcon = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M20 4 3.5 10.6l6.4 2.4L12.4 20 20 4Z" stroke="#273A29" strokeWidth={1.6} strokeLinejoin="round" />
@@ -138,10 +150,21 @@ export function Footer() {
             <span aria-hidden="true" className="my-[26px] block h-px bg-white/[0.14]" />
 
             <p className="m-0 mb-3 font-editorial text-xl text-carely-lime">Email Address</p>
-            <p className="m-0 flex items-center gap-3 text-[17px] text-carely-ivory">
+            <p className="m-0 flex items-center gap-3 text-[17px] text-carely-ivory [overflow-wrap:anywhere]">
               {EnvelopeIcon}
               <a href={`mailto:${footerContact.email}`} className="text-carely-ivory no-underline transition-colors duration-200 hover:text-carely-lime">
                 {footerContact.email}
+              </a>
+            </p>
+
+            <p className="m-0 mt-[26px] mb-3 font-editorial text-xl text-carely-lime">Phone</p>
+            <p className="m-0 flex items-center gap-3 text-[17px] text-carely-ivory">
+              {FooterPhoneIcon}
+              <a
+                href={`tel:${footerContact.phone.replace(/[^+\d]/g, '')}`}
+                className="text-carely-ivory no-underline transition-colors duration-200 hover:text-carely-lime"
+              >
+                {footerContact.phone}
               </a>
             </p>
           </div>

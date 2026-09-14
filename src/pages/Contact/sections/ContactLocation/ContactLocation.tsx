@@ -72,9 +72,13 @@ const details: ContactDetailItem[] = [
     title: 'Phone',
     icon: PhoneIcon,
     body: contactInfo.phone ? (
-      <a href={`tel:${contactInfo.phone.replace(/[^+\d]/g, '')}`} className={detailLinkClasses}>
-        {contactInfo.phone}
-      </a>
+      <>
+        <a href={`tel:${contactInfo.phone.replace(/[^+\d]/g, '')}`} className={detailLinkClasses}>
+          {contactInfo.phone}
+        </a>
+        <br />
+        <span className="text-carely-muted">Fax: {contactInfo.fax}</span>
+      </>
     ) : (
       'Available on request'
     ),

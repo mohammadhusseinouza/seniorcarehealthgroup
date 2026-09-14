@@ -171,7 +171,7 @@ export function MobileFloatingNav() {
             {contactNavLink.label}
             {isContactPage ? <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-carely-deep" /> : ArrowIcon}
           </Link>
-          <p className="mt-[18px] text-center text-[15px] text-carely-ivory/[0.72]">info@seniorcarehealthgroup.com</p>
+          <p className="mt-[18px] text-center text-[15px] text-carely-ivory/[0.72]">{contactInfo.email}</p>
         </div>
       ) : null}
     </div>
